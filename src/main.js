@@ -1,5 +1,10 @@
 import http from 'http'
 
+import path from 'path'
+require('dotenv').config({
+    path: path.resolve(__dirname, '..', '.env' + (process.env.DEBUG ? ".dev" : ""))
+})
+
 import generateOutput from './outputGenerator'
 import getLatest from './cache'
 
@@ -27,7 +32,7 @@ async function server(req, res) {
 async function run() {
     await getLatest(generateOutput)
 
-    let port = process.env.npm_package_config_port
+    let port = process.env.PORT
     if (port == undefined) {
         throw "port env variable could not be found"
     }

@@ -1,9 +1,10 @@
 import popularPostsConvertor from './popularPostsConvertor'
 import contentConvertor from './contentConvertor'
 var axios = require('axios')
+axios.defaults.timeout = 1000
 
 async function fetchWordpressContent() {
-    let hostname = process.env.npm_package_config_hostname
+    let hostname = process.env.HOSTNAME
     if (hostname == undefined) {
         throw "hostname env variable could not be found"
     }

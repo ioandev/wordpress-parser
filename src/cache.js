@@ -29,7 +29,11 @@ async function checkCache(asyncCallback) {
 }
 
 async function getLatest(asyncCallback) {
-    await checkCache(asyncCallback)
+    try {
+        await checkCache(asyncCallback)
+    } catch {
+
+    }
     return cache
 }
 
